@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AspNetVueApp.Services;
-using AspNetVueApp.Hubs;
+using Realtidskommunikation.Services;
+using Realtidskommunikation.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +57,7 @@ app.UseCors();
 // SignalR konfiguration
 app.MapHub<WeatherHub>("/weatherHub"); // WeatherHub för väderuppdateringar
 
+app.MapHub<ChatHub>("/chat-hub"); // ChatHub för chattfunktionen
 
 
 // Övrig konfiguration för produktion, använd statiska filer för SPA

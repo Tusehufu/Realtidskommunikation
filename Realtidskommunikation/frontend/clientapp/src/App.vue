@@ -1,11 +1,14 @@
-<template>
-    <h1>Naturliga Växter & Kreativa Trädgårdar</h1>
+ï»¿<template>
+    <h1>Naturliga VÃ¤xter & Kreativa TrÃ¤dgÃ¥rdar</h1>
     <router-view />
     <WatherCard />
+    <ChatWidget />
+
 </template>
 
 <script setup>
     import WatherCard from './components/WatherCard.vue';
+    import ChatWidget from './components/ChatWidget.vue';
 
 </script>
 
