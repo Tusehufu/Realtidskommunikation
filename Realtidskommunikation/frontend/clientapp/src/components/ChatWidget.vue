@@ -11,18 +11,19 @@
             </div>
 
             <!-- Chat-komponenten visas bara när användarnamn är satt -->
-            <Chat v-if="usernameSet" :username="username" />
+            <Chat v-if="usernameSet" :username="username" @new-private-message="forwardPrivateMessage" />
         </div>
     </div>
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+    import { ref, defineEmits } from 'vue';
     import Chat from './Chat.vue'; // Importera din Chat-komponent
 
     const isChatOpen = ref(false);
     const username = ref('');
     const usernameSet = ref(false);
+    const emit = defineEmits(['new-private-message', 'user-set']);
 
     const toggleChat = () => {
         isChatOpen.value = !isChatOpen.value;
@@ -31,9 +32,17 @@
     const setUsername = () => {
         if (username.value.trim() !== '') {
             usernameSet.value = true;
+            // Emitera händelsen och meddela app.vue om användaren är Admin eller inte
+            emit('user-set', username.value === 'Admin');
         } else {
             alert('Please enter a valid username.');
         }
+    };
+
+    // Vidarebefordra `new-private-message`-händelsen till App.vue
+    const forwardPrivateMessage = (user) => {
+        console.log(`Forwarding private message event for user: ${user}`);
+        emit('new-private-message', user);
     };
 </script>
 

@@ -8,159 +8,119 @@
             </button>
         </div>
 
-        <!-- Innehåll för vald flik -->
-        <div class="messages" v-if="isConnected">
-            <!-- Offentlig chatt -->
-            <div v-if="activeTab === 'all'">
-                <h4>Offentlig Chatt (Alla användare):</h4>
-                <div v-for="(message, index) in messages" :key="index" class="message">
+        <!-- Offentlig chatt -->
+        <div v-if="activeTab === 'all' && isConnected" class="public-chat">
+            <h4>Offentlig Chatt (Alla användare):</h4>
+            <div v-for="(message, index) in messages" :key="index" class="message">
+                <strong>{{ message.sender }}:</strong> {{ message.content }}
+            </div>
+            <input type="text" v-model="newMessage" @keyup.enter="sendPublicMessage" placeholder="Skriv ett meddelande..." />
+            <button @click="sendPublicMessage">Skicka till alla</button>
+        </div>
+
+        <!-- Privat chatt för vanliga användare med Admin -->
+        <div v-if="!isAdmin && activeTab === 'admin' && isConnected">
+            <h4>Privat Chatt med Admin:</h4>
+            <div class="messages">
+                <div v-for="(message, index) in privateMessages" :key="index" class="message">
                     <strong>{{ message.sender }}:</strong> {{ message.content }}
                 </div>
-                <input type="text" v-model="newMessage" @keyup.enter="sendPublicMessage" placeholder="Skriv ett meddelande..." />
-                <button @click="sendPublicMessage">Skicka till alla</button>
             </div>
-
-            <!-- Privat chatt med Admin eller hantering av användare (för admin) -->
-            <div v-if="activeTab === 'admin'">
-                <h4 v-if="isAdmin">Hantera användare:</h4>
-                <h4 v-else>Privat Chatt med Admin:</h4>
-
-                <div v-if="isAdmin">
-                    <!-- Om admin är inloggad, visa listan över användare som skickat privata meddelanden -->
-                    <div v-for="(user, index) in privateUsers" :key="index" class="user-tab" @click="selectPrivateChat(user)">
-                        {{ user }}
-                    </div>
-                </div>
-
-                <div v-else>
-                    <!-- Om användare är inloggad, visa privata meddelanden med Admin -->
-                    <div v-for="(message, index) in privateMessages" :key="index" class="message">
-                        <strong>{{ message.sender }}:</strong> {{ message.content }}
-                    </div>
-                    <input type="text" v-model="newPrivateMessage" @keyup.enter="sendPrivateMessageToAdmin" placeholder="Skriv ett meddelande till Admin..." />
-                    <button @click="sendPrivateMessageToAdmin">Skicka till Admin</button>
-                </div>
-            </div>
+            <input type="text" v-model="newPrivateMessage" @keyup.enter="sendPrivateMessageToAdmin" placeholder="Skriv ett meddelande till Admin..." />
+            <button @click="sendPrivateMessageToAdmin">Skicka till Admin</button>
         </div>
+        <button v-if="isAdmin" @click="emit('new-private-message', 'TestUser')">Testa skapa chatwidget</button>
 
         <div v-if="!isConnected" class="connection-status">Connecting to chat...</div>
     </div>
 </template>
 
 <script setup>
-    import { ref, onMounted } from 'vue';
+    import { ref, onMounted, defineEmits } from 'vue';
     import * as signalR from '@microsoft/signalr';
 
-    // Props för användarnamn från ChatWidget
     const props = defineProps({ username: String });
+    const emit = defineEmits(['new-private-message']);
 
-    const messages = ref([]);  // Meddelanden från offentlig chatt
-    const privateMessages = ref([]);  // Meddelanden från admin-chatt
-    const privateUsers = ref([]);  // Lista över användare som admin chattar med
-    const newMessage = ref('');  // Inmatning för offentlig chatt
-    const newPrivateMessage = ref('');  // Inmatning för privat chatt med admin
-    const selectedUser = ref('');  // Den valda användaren som admin chattar med
-    const connection = ref(null);  // SignalR-anslutning
-    const isConnected = ref(false);  // Status för anslutningen
-    const activeTab = ref('all');  // Aktiva fliken (antingen 'all' eller 'admin')
-    const isAdmin = ref(props.username === 'Admin');  // Kolla om användaren är admin
+    // Data
+    const messages = ref([]);
+    const privateMessages = ref([]);
+    const newMessage = ref('');
+    const newPrivateMessage = ref('');
+    const connection = ref(null);
+    const isConnected = ref(false);
+    const activeTab = ref('all');
+    const isAdmin = ref(props.username === 'Admin');
 
-    // Hämta meddelanden från sessionStorage när chatten laddas
+    // Anslut till SignalR och hantera inkommande meddelanden
     onMounted(async () => {
-        const savedMessages = JSON.parse(sessionStorage.getItem('chatMessages') || '[]');
-        messages.value = savedMessages;
-
         connection.value = new signalR.HubConnectionBuilder()
             .withUrl(`https://localhost:7065/chat-hub?username=${encodeURIComponent(props.username)}`)
             .build();
 
-
-
+        // Lyssna på offentliga meddelanden
         connection.value.on('ReceiveMessage', (message, sender) => {
             messages.value.push({ sender, content: message });
-            saveMessagesToSessionStorage();  // Spara meddelanden i sessionStorage
-            scrollToBottom();  // Skrolla automatiskt till botten
+            scrollToBottomPublicChat();
         });
 
+        // Lyssna på privata meddelanden
         connection.value.on('ReceivePrivateMessage', (message, sender) => {
-            // Hantera privata meddelanden
-            if (isAdmin.value && selectedUser.value === sender) {
-                // Om admin har valt denna användare, visa meddelanden
+            if (isAdmin.value) {
+                console.log(`Admin received a private message from ${sender}: ${message}`);
+                // Emitera händelse för Admin att skapa en ny widget för användaren
+                emit('new-private-message', sender, message);
+            } else {
+                // Vanliga användare tar emot sina egna meddelanden
+                console.log(`User received a private message from ${sender}: ${message}`); // Debug-logg
                 privateMessages.value.push({ sender, content: message });
-            } else if (!isAdmin.value) {
-                // Vanliga användare ser sina egna privata meddelanden
-                privateMessages.value.push({ sender, content: message });
+                scrollToBottomPrivateChat();
             }
-            saveMessagesToSessionStorage();
-            scrollToBottom();
         });
-
 
         try {
             await connection.value.start();
-            isConnected.value = true;  // Sätt statusen till ansluten
-            console.log('SignalR connection established.');
+            isConnected.value = true;
         } catch (err) {
-            console.error('Failed to connect to SignalR: ', err);
+            console.error('Failed to connect to SignalR:', err);
         }
     });
 
-    // Funktion för att spara meddelanden i sessionStorage
-    const saveMessagesToSessionStorage = () => {
-        sessionStorage.setItem('chatMessages', JSON.stringify(messages.value));
-    };
-
-    // Skicka offentliga meddelanden till alla
+    // Offentlig chatt-meddelande
     const sendPublicMessage = async () => {
-        if (!isConnected.value) {
-            console.error("Cannot send message because SignalR is not connected.");
-            return;
-        }
-
         if (newMessage.value.trim() !== '') {
-            try {
-                await connection.value.invoke('SendMessage', newMessage.value, props.username);  // Skicka meddelandet med användarnamnet
-                newMessage.value = '';  // Rensa meddelandefältet efter att meddelandet skickats
-                saveMessagesToSessionStorage();  // Spara meddelanden i sessionStorage
-            } catch (err) {
-                console.error('Failed to send message: ', err);
-            }
+            await connection.value.invoke('SendMessage', newMessage.value, props.username);
+            messages.value.push({ sender: props.username, content: newMessage.value });
+            newMessage.value = '';
+            scrollToBottomPublicChat();
         }
     };
 
-    // Skicka privata meddelanden till admin eller vald användare (admin)
+    // Privat meddelande till Admin
     const sendPrivateMessageToAdmin = async () => {
-        if (!isConnected.value) {
-            console.error("Cannot send message because SignalR is not connected.");
-            return;
-        }
-
         if (newPrivateMessage.value.trim() !== '') {
-            try {
-                if (isAdmin.value && selectedUser.value) {
-                    await connection.value.invoke('SendMessageToAdmin', newPrivateMessage.value, selectedUser.value);
-                } else {
-                    await connection.value.invoke('SendMessageToAdmin', newPrivateMessage.value, props.username);
-                }
-                newPrivateMessage.value = '';
-                saveMessagesToSessionStorage();
-            } catch (err) {
-                console.error('Failed to send private message to admin: ', err);
-            }
+            await connection.value.invoke('SendMessageToAdmin', newPrivateMessage.value, props.username);
+            privateMessages.value.push({ sender: props.username, content: newPrivateMessage.value });
+            newPrivateMessage.value = '';
+            scrollToBottomPrivateChat();
         }
     };
 
-    // Välj en privat användare (för admin)
-    const selectPrivateChat = (user) => {
-        selectedUser.value = user;
-        privateMessages.value = [];
+    // Skrollfunktioner
+    const scrollToBottomPublicChat = () => {
+        const chatArea = document.querySelector('.public-chat .messages');
+        if (chatArea) {
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
     };
 
-    // Funktion för att skrolla till botten av chatten när nya meddelanden tas emot
-    const scrollToBottom = () => {
+    const scrollToBottomPrivateChat = () => {
         const chatArea = document.querySelector('.messages');
-        chatArea.scrollTop = chatArea.scrollHeight;
+        if (chatArea) {
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
     };
+
 </script>
 
 
