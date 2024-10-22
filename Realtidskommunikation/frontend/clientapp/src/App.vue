@@ -6,8 +6,13 @@
         <section>
             <router-view />
         </section>
-        <section>
-            <WatherCard />
+        <section class="row">
+            <div class="col-md-6">
+                <WatherCard />
+            </div>
+            <div class="col-md-6">
+                <Greenhouse />
+                </div>
         </section>
         <aside>
             <!-- Vanliga användare och Admin använder samma ChatWidget -->
@@ -28,6 +33,7 @@
     import WatherCard from './components/WatherCard.vue';
     import ChatWidget from './components/ChatWidget.vue';
     import AdminChatWidget from './components/AdminChatWidget.vue';
+    import Greenhouse from './components/Greenhouse.vue';
 
     const isAdmin = ref(false);
     const adminPrivateUsers = ref([]);
