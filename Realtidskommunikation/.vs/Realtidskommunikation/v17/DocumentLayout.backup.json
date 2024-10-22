@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\frontend\\clientapp\\src\\app.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|solutionrelative:frontend\\clientapp\\src\\app.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\backend\\services\\greenhousebackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|solutionrelative:backend\\services\\greenhousebackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\backend\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|solutionrelative:backend\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\backend\\hubs\\weatherhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|solutionrelative:backend\\hubs\\weatherhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\frontend\\clientapp\\src\\components\\chat.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|solutionrelative:frontend\\clientapp\\src\\components\\chat.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\backend\\hubs\\greenhousehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|solutionrelative:backend\\hubs\\greenhousehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\frontend\\clientapp\\src\\components\\chatwidget.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|solutionrelative:frontend\\clientapp\\src\\components\\chatwidget.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\frontend\\clientapp\\src\\components\\adminchatwidget.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|solutionrelative:frontend\\clientapp\\src\\components\\adminchatwidget.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\frontend\\clientapp\\src\\components\\greenhouse.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|solutionrelative:frontend\\clientapp\\src\\components\\greenhouse.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\backend\\services\\weatherbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6A61BC3-9F10-49FB-BE87-6B061EF31C99}|Backend\\Backend.csproj|solutionrelative:backend\\services\\weatherbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|c:\\users\\johan\\onedrive\\dokument\\realtidskommunikation\\realtidskommunikation\\frontend\\clientapp\\src\\app.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{11E9BE90-FAC0-431C-AEB5-65C4A376786B}|Frontend\\frontend.esproj|solutionrelative:frontend\\clientapp\\src\\app.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,33 +38,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Program.cs",
               "RelativeDocumentMoniker": "Backend\\Program.cs",
               "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Program.cs",
               "RelativeToolTip": "Backend\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T07:55:45.25Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "App.vue",
-              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\App.vue",
-              "RelativeDocumentMoniker": "frontend\\clientapp\\src\\App.vue",
-              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\App.vue",
-              "RelativeToolTip": "frontend\\clientapp\\src\\App.vue",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-10-17T13:41:25.136Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -78,54 +68,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ChatWidget.vue",
-              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\components\\ChatWidget.vue",
-              "RelativeDocumentMoniker": "frontend\\clientapp\\src\\components\\ChatWidget.vue",
-              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\components\\ChatWidget.vue",
-              "RelativeToolTip": "frontend\\clientapp\\src\\components\\ChatWidget.vue",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-10-22T07:19:36.447Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ChatHub.cs",
-              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Hubs\\ChatHub.cs",
-              "RelativeDocumentMoniker": "Backend\\Hubs\\ChatHub.cs",
-              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Hubs\\ChatHub.cs",
-              "RelativeToolTip": "Backend\\Hubs\\ChatHub.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAcwH0AAAA2AAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "WeatherBackgroundService.cs",
+              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Services\\WeatherBackgroundService.cs",
+              "RelativeDocumentMoniker": "Backend\\Services\\WeatherBackgroundService.cs",
+              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Services\\WeatherBackgroundService.cs",
+              "RelativeToolTip": "Backend\\Services\\WeatherBackgroundService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T07:19:20.292Z",
+              "WhenOpened": "2024-10-22T12:01:37.715Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdminChatWidget.vue",
-              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\components\\AdminChatWidget.vue",
-              "RelativeDocumentMoniker": "frontend\\clientapp\\src\\components\\AdminChatWidget.vue",
-              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\components\\AdminChatWidget.vue",
-              "RelativeToolTip": "frontend\\clientapp\\src\\components\\AdminChatWidget.vue",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAABGAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "GreenhouseBackgroundService.cs",
+              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Services\\GreenhouseBackgroundService.cs",
+              "RelativeDocumentMoniker": "Backend\\Services\\GreenhouseBackgroundService.cs",
+              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Services\\GreenhouseBackgroundService.cs",
+              "RelativeToolTip": "Backend\\Services\\GreenhouseBackgroundService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T12:01:01.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.vue",
+              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\App.vue",
+              "RelativeDocumentMoniker": "frontend\\clientapp\\src\\App.vue",
+              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\App.vue",
+              "RelativeToolTip": "frontend\\clientapp\\src\\App.vue",
+              "ViewState": "AgIAACQAAAAAAAAAAAAWwA8AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-10-17T18:22:37.688Z",
+              "WhenOpened": "2024-10-22T11:47:09.316Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Chat.vue",
-              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\components\\Chat.vue",
-              "RelativeDocumentMoniker": "frontend\\clientapp\\src\\components\\Chat.vue",
-              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\components\\Chat.vue",
-              "RelativeToolTip": "frontend\\clientapp\\src\\components\\Chat.vue",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
+              "Title": "GreenhouseHub.cs",
+              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Hubs\\GreenhouseHub.cs",
+              "RelativeDocumentMoniker": "Backend\\Hubs\\GreenhouseHub.cs",
+              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Hubs\\GreenhouseHub.cs",
+              "RelativeToolTip": "Backend\\Hubs\\GreenhouseHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T11:44:56.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WeatherHub.cs",
+              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Hubs\\WeatherHub.cs",
+              "RelativeDocumentMoniker": "Backend\\Hubs\\WeatherHub.cs",
+              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\Backend\\Hubs\\WeatherHub.cs",
+              "RelativeToolTip": "Backend\\Hubs\\WeatherHub.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T11:44:29.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Greenhouse.vue",
+              "DocumentMoniker": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\components\\Greenhouse.vue",
+              "RelativeDocumentMoniker": "frontend\\clientapp\\src\\components\\Greenhouse.vue",
+              "ToolTip": "C:\\Users\\johan\\OneDrive\\Dokument\\Realtidskommunikation\\Realtidskommunikation\\frontend\\clientapp\\src\\components\\Greenhouse.vue",
+              "RelativeToolTip": "frontend\\clientapp\\src\\components\\Greenhouse.vue",
+              "ViewState": "AgIAADAAAAAAAAAAAAAmwFUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-10-15T19:04:40.876Z",
+              "WhenOpened": "2024-10-22T08:42:47.435Z",
               "EditorCaption": ""
             }
           ]

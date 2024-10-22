@@ -28,10 +28,12 @@ builder.Services.AddCors(options =>
 // Registrera HttpClient för vädertjänst
 builder.Services.AddHttpClient<WeatherService>();
 builder.Services.AddSingleton<WeatherBackgroundService>();
+builder.Services.AddSingleton<GreenhouseService>();
 
 
 // Lägg till bakgrundstjänst för att hämta och pusha väderdata
 builder.Services.AddHostedService<WeatherBackgroundService>();
+builder.Services.AddHostedService<GreenhouseBackgroundService>();
 
 // Om vi vill stödja SPA i produktion (statiska filer)
 builder.Services.AddSpaStaticFiles(configuration =>
@@ -56,7 +58,7 @@ app.UseCors();
 
 // SignalR konfiguration
 app.MapHub<WeatherHub>("/weatherHub"); // WeatherHub för väderuppdateringar
-
+app.MapHub<GreenhouseHub>("/greenhouseHub"); // ChatHub för chattfunktionen
 app.MapHub<ChatHub>("/chat-hub"); // ChatHub för chattfunktionen
 
 
