@@ -6,7 +6,7 @@
 
         <div v-if="isChatOpen" class="chat-container">
             <div class="messages">
-                <div v-for="(message, index) in props.messages" :key="index" class="message">
+                <div v-for="(message, index) in chatMessages" :key="index" class="message">
                     <strong>{{ message.sender }}:</strong> {{ message.content }}
                 </div>
             </div>
@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, computed, watch } from 'vue';
+    import { ref, computed, watch, onMounted } from 'vue';
     import * as signalR from '@microsoft/signalr';
 
     const props = defineProps({
@@ -28,22 +28,31 @@
     const isChatOpen = ref(false);
     const newMessage = ref('');
     const connection = ref(null);
-    const chatMessages = computed(() => props.messages);
+    const chatMessages = ref([...props.messages]);
 
-    // Debug-logg för att verifiera reaktivitet av meddelanden
-    watch(props.messages, (newMessages) => {
-        console.log("Messages updated:", newMessages);
-    });
+    // Använd en `watch` för att uppdatera `chatMessages` när `props.messages` ändras
+    watch(() => props.messages, (newMessages) => {
+        console.log("Messages updated in watch:", newMessages);
+        if (newMessages.length > 0) {
+            newMessages.forEach((msg, idx) => {
+                console.log(`Message ${idx}: Sender: ${msg.sender}, Content: ${msg.content}`);
+            });
+        }
+        chatMessages.value = [...newMessages];
+    }, { immediate: true }); // Lägg till `immediate: true` för att köra den direkt
 
     const toggleChat = () => {
         isChatOpen.value = !isChatOpen.value;
+        console.log(`Chat toggled for user ${props.user}. Is chat open: ${isChatOpen.value}`);
     };
 
     // Skicka meddelandet från Admin till den specifika användaren via SignalR
     const sendMessageToUser = async () => {
         if (newMessage.value.trim()) {
             // Lägg till Admins meddelande i den lokala meddelandelistan
-            props.messages.push({ sender: 'Admin', content: newMessage.value });
+            const adminMessage = { sender: 'Admin', content: newMessage.value };
+            console.log("Admin sending message:", adminMessage);
+            chatMessages.value.push(adminMessage);
 
             try {
                 // Skicka meddelandet via SignalR
@@ -66,7 +75,11 @@
         connection.value.on("ReceivePrivateMessage", (message, sender) => {
             if (sender === props.user) {
                 // Lägg till användarens meddelande till den lokala listan
-                props.messages.push({ sender, content: message });
+                const newMessage = { sender, content: message };
+                console.log("Received private message from user:", newMessage);
+                props.messages.push(newMessage);
+            } else {
+                console.log(`Received private message from ${sender}, but it doesn't match the active chat with ${props.user}`);
             }
         });
 

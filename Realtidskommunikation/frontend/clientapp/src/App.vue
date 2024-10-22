@@ -1,17 +1,26 @@
 ﻿<template>
-    <h1>Naturliga Växter & Kreativa Trädgårdar</h1>
-    <router-view />
-    <WatherCard />
-    <!-- Vanliga användare och Admin använder samma ChatWidget -->
-    <ChatWidget @new-private-message="createChatWidget"  @user-set="checkIfAdmin" />
-
+    <header>
+        <h1 class="text-center">Naturliga Växter & Kreativa Trädgårdar</h1>
+    </header>
+    <main>
+        <section>
+            <router-view />
+        </section>
+        <section>
+            <WatherCard />
+        </section>
+        <aside>
+            <!-- Vanliga användare och Admin använder samma ChatWidget -->
+            <ChatWidget @new-private-message="createChatWidget" @user-set="checkIfAdmin" />
+        </aside>
+    </main>
     <!-- Flexbox container för Admins dynamiska chatwidgets -->
-    <div v-if="isAdmin" class="admin-chat-widgets">
+    <section v-if="isAdmin" class="admin-chat-widgets">
         <AdminChatWidget v-for="(user, index) in adminPrivateUsers"
                          :key="index"
                          :user="user"
                          :messages="userMessages[user]" />
-    </div>
+    </section>
 </template>
 
 <script setup>
@@ -30,17 +39,29 @@
         console.log(`User is Admin: ${userIsAdmin}`);
     };
 
-    // Skapa en ny widget för varje användare som kontaktar Admin
-    const createChatWidget = (user) => {
+    // Skapa en ny widget för varje användare som kontaktar Admin och lagra meddelandet
+    const createChatWidget = (user, message) => {
         console.log(`Attempting to create new chat widget for user: ${user}`);
         if (!adminPrivateUsers.value.includes(user)) {
             console.log(`Creating new chat widget for user: ${user}`);
             adminPrivateUsers.value.push(user);
-            userMessages.value[user] = []; // Initiera meddelandelista för användaren
+
+            // Lägg till första meddelandet direkt i listan för användaren
+            userMessages.value = {
+                ...userMessages.value,
+                [user]: [{ sender: user, content: message }]
+            };
+
+            console.log(`First message added for ${user}:`, { sender: user, content: message });
         } else {
-            console.log(`Chat widget for user ${user} already exists.`);
+            // Om widget redan finns, lägg till meddelandet i listan
+            userMessages.value[user].push({ sender: user, content: message });
+            console.log(`Added subsequent message for ${user}:`, { sender: user, content: message });
         }
     };
+
+
+
 
     // Lyssna på inkommande privata meddelanden och lagra dem
     const handleIncomingPrivateMessage = (user, message) => {

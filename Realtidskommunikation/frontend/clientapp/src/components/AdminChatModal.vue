@@ -1,8 +1,8 @@
-<template>
+<!--<template>
     <div>
-        <h2>Admin Chat Hantering</h2>
+        <h2>Admin Chat Hantering</h2>-->
         <!-- Här visar vi alla chattmodals som öppnas dynamiskt för varje användare -->
-        <div v-for="(user, index) in privateUsers" :key="index" class="chat-modal">
+        <!--<div v-for="(user, index) in privateUsers" :key="index" class="chat-modal">
             <h3>Chatta med {{ user }}</h3>
             <div class="messages">
                 <div v-for="(message, index) in userChats[user]" :key="index" class="message">
@@ -93,4 +93,4 @@ const scrollToBottom = (user) => {
     .message {
         margin-bottom: 10px;
     }
-</style>
+</style>-->

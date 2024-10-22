@@ -40,9 +40,9 @@
     };
 
     // Vidarebefordra `new-private-message`-händelsen till App.vue
-    const forwardPrivateMessage = (user) => {
-        console.log(`Forwarding private message event for user: ${user}`);
-        emit('new-private-message', user);
+    const forwardPrivateMessage = (user, message) => {
+        console.log(`Forwarding private message event for user: ${user} with message: ${message}`);
+        emit('new-private-message', user, message);
     };
 </script>
 

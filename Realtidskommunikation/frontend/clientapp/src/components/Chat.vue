@@ -3,8 +3,10 @@
         <!-- Flikbar för att växla mellan chattar -->
         <div class="tab-bar">
             <button :class="{ active: activeTab === 'all' }" @click="activeTab = 'all'">Chatta med alla</button>
-            <button :class="{ active: activeTab === 'admin' }" @click="activeTab = 'admin'">
-                {{ isAdmin ? 'Hantera användare' : 'Chatta med Admin' }}
+            <button v-if="!isAdmin"
+                    :class="{ active: activeTab === 'admin' }"
+                    @click="activeTab = 'admin'">
+                Chatta med Admin
             </button>
         </div>
 
@@ -29,8 +31,6 @@
             <input type="text" v-model="newPrivateMessage" @keyup.enter="sendPrivateMessageToAdmin" placeholder="Skriv ett meddelande till Admin..." />
             <button @click="sendPrivateMessageToAdmin">Skicka till Admin</button>
         </div>
-        <button v-if="isAdmin" @click="emit('new-private-message', 'TestUser')">Testa skapa chatwidget</button>
-
         <div v-if="!isConnected" class="connection-status">Connecting to chat...</div>
     </div>
 </template>
