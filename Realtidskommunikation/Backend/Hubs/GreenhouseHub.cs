@@ -5,27 +5,34 @@ namespace Realtidskommunikation.Hubs
 {
     public class GreenhouseHub : Hub
     {
+        private static bool _isWindowOpen = false;
+        private static bool _isWatering = false;
         private readonly GreenhouseService _greenhouseService;
 
-        // Injektera GreenhouseService via konstruktorn
         public GreenhouseHub(GreenhouseService greenhouseService)
         {
             _greenhouseService = greenhouseService;
         }
 
-        public async Task SendSensorData(string sensorData)
-        {
-            // Skicka sensoruppdateringar till alla klienter
-            await Clients.All.SendAsync("ReceiveSensorData", sensorData);
-        }
-
         public async Task ControlDevice(string device, string command)
         {
-            // Skicka kommandot till alla anslutna klienter för loggning och visning
-            await Clients.All.SendAsync("DeviceControl", device, command);
-
-            // Använd instansen av GreenhouseService för att hantera kommandot
+            // Anropa tjänsten för att utföra kommandot
             _greenhouseService.ExecuteCommand(device, command);
+
+            // Uppdatera det globala tillståndet
+            switch (device.ToLower())
+            {
+                case "window":
+                    _isWindowOpen = command == "open";
+                    break;
+                case "watering":
+                    _isWatering = command == "start";
+                    break;
+            }
+
+            // Skicka det uppdaterade tillståndet till alla anslutna klienter
+            await Clients.All.SendAsync("UpdateState", _isWindowOpen, _isWatering);
         }
     }
+
 }

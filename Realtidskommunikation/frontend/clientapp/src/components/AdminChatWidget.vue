@@ -94,8 +94,8 @@
 
 <style scoped>
     .chat-widget {
-        width: 300px; /* Behåll enhetlig bredd för widgets */
-        flex: 0 0 auto; /* Tillåt widgets att placeras horisontellt utan att krympa */
+        width: 300px; 
+        flex: 0 0 auto; 
     }
 
     .toggle-chat-btn {

@@ -24,7 +24,7 @@ public class GreenhouseBackgroundService : BackgroundService
             // Skicka sensordata till alla anslutna klienter via SignalR
             await _hubContext.Clients.All.SendAsync("ReceiveSensorData", sensorData);
 
-            // Vänta i 5 sekunder innan nästa uppdatering
+            // Vänta i 50 sekunder innan nästa uppdatering
             await Task.Delay(50000, stoppingToken);
         }
     }

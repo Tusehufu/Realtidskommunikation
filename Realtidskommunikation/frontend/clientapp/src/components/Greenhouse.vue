@@ -55,8 +55,9 @@
             sensorData.value = data;
         });
 
-        connection.on('DeviceControl', (device: string, command: string) => {
-            console.log(`Enhet: ${device}, Kommando: ${command}`);
+        connection.on('UpdateState', (windowState: boolean, wateringState: boolean) => {
+            isWindowOpen.value = windowState;
+            isWatering.value = wateringState;
         });
 
         connection.start()
@@ -64,7 +65,7 @@
             .catch(err => console.error('SignalR-anslutning misslyckades: ', err));
     };
 
-    // Funktioner för att hantera kommandon och ändra statusvariablerna
+    // Funktioner för att hantera kommandon och skicka till servern
     const sendCommand = (device: string, command: string) => {
         if (connection) {
             connection.invoke('ControlDevice', device, command)
@@ -74,12 +75,10 @@
 
     const toggleWindow = (command: string) => {
         sendCommand('window', command);
-        isWindowOpen.value = command === 'open';
     };
 
     const toggleWatering = (command: string) => {
         sendCommand('watering', command);
-        isWatering.value = command === 'start';
     };
 
     onMounted(() => {
