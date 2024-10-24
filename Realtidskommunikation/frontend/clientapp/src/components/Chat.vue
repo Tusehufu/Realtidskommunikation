@@ -13,8 +13,12 @@
         <!-- Offentlig chatt -->
         <div v-if="activeTab === 'all' && isConnected" class="public-chat">
             <h4>Offentlig Chatt (Alla användare):</h4>
-            <div v-for="(message, index) in messages" :key="index" class="message">
-                <strong>{{ message.sender }}:</strong> {{ message.content }}
+            <div class="messages-container">
+                <div class="messages">
+                    <div v-for="(message, index) in messages" :key="index" class="message">
+                        <strong>{{ message.sender }}:</strong> {{ message.content }}
+                    </div>
+                </div>
             </div>
             <input type="text" v-model="newMessage" @keyup.enter="sendPublicMessage" placeholder="Skriv ett meddelande..." />
             <button @click="sendPublicMessage">Skicka till alla</button>
@@ -23,9 +27,11 @@
         <!-- Privat chatt för vanliga användare med Admin -->
         <div v-if="!isAdmin && activeTab === 'admin' && isConnected">
             <h4>Privat Chatt med Admin:</h4>
-            <div class="messages">
-                <div v-for="(message, index) in privateMessages" :key="index" class="message">
-                    <strong>{{ message.sender }}:</strong> {{ message.content }}
+            <div class="messages-container">
+                <div class="messages">
+                    <div v-for="(message, index) in privateMessages" :key="index" class="message">
+                        <strong>{{ message.sender }}:</strong> {{ message.content }}
+                    </div>
                 </div>
             </div>
             <input type="text" v-model="newPrivateMessage" @keyup.enter="sendPrivateMessageToAdmin" placeholder="Skriv ett meddelande till Admin..." />
@@ -90,7 +96,6 @@
     const sendPublicMessage = async () => {
         if (newMessage.value.trim() !== '') {
             await connection.value.invoke('SendMessage', newMessage.value, props.username);
-            messages.value.push({ sender: props.username, content: newMessage.value });
             newMessage.value = '';
             scrollToBottomPublicChat();
         }
@@ -120,10 +125,7 @@
             chatArea.scrollTop = chatArea.scrollHeight;
         }
     };
-
 </script>
-
-
 
 <style scoped>
     .chat-area {
@@ -150,14 +152,19 @@
                 color: white;
             }
 
-    .messages {
-        flex: 1;
-        overflow-y: auto;
-        max-height: 400px;
+    .messages-container {
+        max-height: 180px; /* Fixa höjden på meddelandelistan */
+        overflow-y: scroll; /* Gör att den är scrollbar */
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 5px;
         background-color: #f9f9f9;
+        margin-bottom: 10px; /* Lägger till lite mellanrum mellan chatten och input */
+    }
+
+    .messages {
+        display: flex;
+        flex-direction: column;
     }
 
     .message {

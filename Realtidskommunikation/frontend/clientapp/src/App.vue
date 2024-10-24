@@ -18,6 +18,9 @@
             <!-- Vanliga användare och Admin använder samma ChatWidget -->
             <ChatWidget @new-private-message="createChatWidget" @user-set="checkIfAdmin" />
         </aside>
+        <section>
+            <OrderDocument />
+        </section>
     </main>
     <!-- Flexbox container för Admins dynamiska chatwidgets -->
     <section v-if="isAdmin" class="admin-chat-widgets">
@@ -34,6 +37,7 @@
     import ChatWidget from './components/ChatWidget.vue';
     import AdminChatWidget from './components/AdminChatWidget.vue';
     import Greenhouse from './components/Greenhouse.vue';
+    import OrderDocument from './components/OrderDocument.vue';
 
     const isAdmin = ref(false);
     const adminPrivateUsers = ref([]);

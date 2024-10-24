@@ -1,5 +1,5 @@
 ﻿<template>
-    <div class="container mt-5" style="background-color: forestgreen; color: white;">
+    <div class="container mt-1" style="background-color: forestgreen; color: white;">
         <h1>Växthusets Sensordata och Kontroll</h1>
 
         <!-- Visar den senaste sensordatan -->
@@ -11,14 +11,24 @@
 
         <!-- Kontroller för enheter -->
         <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap">
-            <div class="d-flex">
-                <button class="btn btn-primary me-2" @click="sendCommand('window', 'open')">Öppna Fönster</button>
-                <button class="btn btn-danger me-2" @click="sendCommand('window', 'close')">Stäng Fönster</button>
+            <div class="d-flex align-items-center">
+                <i v-if="!isWindowOpen" class="fas fa-window-close fa-2x me-2"></i>
+                <i v-else class="fas fa-window-maximize fa-2x me-2"></i>
+                <button v-if="!isWindowOpen" class="btn btn-primary me-2" @click="toggleWindow('open')">Öppna Fönster</button>
+                <button v-if="isWindowOpen" class="btn btn-danger me-2" @click="toggleWindow('close')">Stäng Fönster</button>
             </div>
-            <div class="d-flex">
-                <button class="btn btn-primary me-2" @click="sendCommand('watering', 'start')">Starta Bevattning</button>
-                <button class="btn btn-danger" @click="sendCommand('watering', 'stop')">Stoppa Bevattning</button>
+            <div class="d-flex align-items-center">
+                <i v-if="!isWatering" class="fas fa-tint-slash fa-2x me-2"></i>
+                <i v-else class="fas fa-tint fa-2x me-2"></i>
+                <button v-if="!isWatering" class="btn btn-primary me-2" @click="toggleWatering('start')">Starta Bevattning</button>
+                <button v-if="isWatering" class="btn btn-danger" @click="toggleWatering('stop')">Stoppa Bevattning</button>
             </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <h4 v-if="!isWindowOpen">Fönster är stängda</h4>
+            <h4 v-if="isWindowOpen">Fönster är öppna</h4>
+            <h4 v-if="!isWatering">Bevattning är avstängd</h4>
+            <h4 v-if="isWatering">Bevattning är igång</h4>
         </div>
     </div>
 </template>
@@ -27,7 +37,11 @@
     import { ref, onMounted, onUnmounted } from 'vue';
     import * as signalR from '@microsoft/signalr';
 
-    // Ändra sensorData till en sträng för att endast hålla den senaste uppdateringen
+    // Statusvariabler för att kontrollera knapparnas visning
+    const isWindowOpen = ref(false);
+    const isWatering = ref(false);
+
+    // Sensordata
     const sensorData = ref<string>('Väntar på sensordata...');
     let connection: signalR.HubConnection | null = null;
 
@@ -37,12 +51,10 @@
             .withAutomaticReconnect()
             .build();
 
-        // Hantera inkommande sensordata och uppdatera endast det befintliga elementet
         connection.on('ReceiveSensorData', (data: string) => {
             sensorData.value = data;
         });
 
-        // Hantera feedback från kommandon
         connection.on('DeviceControl', (device: string, command: string) => {
             console.log(`Enhet: ${device}, Kommando: ${command}`);
         });
@@ -52,12 +64,22 @@
             .catch(err => console.error('SignalR-anslutning misslyckades: ', err));
     };
 
-    // Skicka kommandon till backend
+    // Funktioner för att hantera kommandon och ändra statusvariablerna
     const sendCommand = (device: string, command: string) => {
         if (connection) {
             connection.invoke('ControlDevice', device, command)
                 .catch(err => console.error(err));
         }
+    };
+
+    const toggleWindow = (command: string) => {
+        sendCommand('window', command);
+        isWindowOpen.value = command === 'open';
+    };
+
+    const toggleWatering = (command: string) => {
+        sendCommand('watering', command);
+        isWatering.value = command === 'start';
     };
 
     onMounted(() => {
@@ -74,6 +96,7 @@
 <style>
     .container {
         max-width: 600px;
+        height: 265px;
     }
 
     .sensor-data p {
@@ -81,5 +104,9 @@
         padding: 10px;
         background-color: #2c3e50;
         border-radius: 5px;
+    }
+
+    .fas {
+        color: white;
     }
 </style>

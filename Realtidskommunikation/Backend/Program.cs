@@ -60,6 +60,7 @@ app.UseCors();
 app.MapHub<WeatherHub>("/weatherHub"); // WeatherHub för väderuppdateringar
 app.MapHub<GreenhouseHub>("/greenhouseHub"); // ChatHub för chattfunktionen
 app.MapHub<ChatHub>("/chat-hub"); // ChatHub för chattfunktionen
+app.MapHub<DocumentHub>("/Documenthub"); // ChatHub för chattfunktionen
 
 
 // Övrig konfiguration för produktion, använd statiska filer för SPA
